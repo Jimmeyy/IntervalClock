@@ -81,11 +81,14 @@ body {
     height: 100%;
 
     &-wrapper {
-        min-height: calc(100% - 20px - 50px - 50px);
-
         @include breakpoint-max(1200px) {
+            min-height: calc(100% - 20px - 50px - 50px);
             max-width: 500px;
             margin: 0 auto;
+        }
+
+        @include breakpoint-min(1201px) {
+            height: calc(100% - 20px - 50px - 50px);
         }
     }
 

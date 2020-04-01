@@ -11,6 +11,7 @@ body {
     position: relative;
     overflow: hidden;
     height: 100vh;
+    padding-left: 420px;
     background: $app-bg-gradient;
 }
 
@@ -74,6 +75,7 @@ body {
         justify-content: space-between;
         align-items: center;
         margin-bottom: 8px;
+        padding: 0 3px;
 
         label {
             font-weight: 300;
@@ -133,5 +135,63 @@ body {
 
     &.red {
         background-color: $error-red;
+    }
+}
+
+.heading {
+    font-size: 68px;
+    font-weight: 800;
+    color: $font-white;
+
+    &.timer {
+        font-size: 200px;
+        color: $yellow;
+    }
+
+    &.small {
+        font-size: 32px;
+        font-weight: 700;
+    }
+}
+
+.clock {
+    &-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    &-main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 90px 160px 110px 160px;
+        border-radius: 360px;
+        background-color: $timer-bg;
+    }
+
+    &-header {
+        // here
+    }
+
+    &-content {
+        // here
+    }
+
+    &-footer {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+
+        &-col {
+            text-align: center;
+
+            span {
+                font-size: 38px;
+                font-weight: 400;
+                color: $yellow;
+            }
+        }
     }
 }

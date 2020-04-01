@@ -1,47 +1,31 @@
-// // Regular normal
-// @font-face {
-//     font-family: Quicksand;
-//     src: url('../assets/fonts/Quicksand-Regular.otf');
-//     font-weight: 400;
-//     font-style: normal;
-// }
+// Regular normal
+@font-face {
+    font-family: "Open sans";
+    src: url("../fonts/OpenSans-Regular.ttf");
+    font-weight: 400;
+    font-style: normal;
+}
 
-// // Regular Italic
-// @font-face {
-//     font-family: Quicksand;
-//     src: url('../assets/fonts/Quicksand-Italic.otf');
-//     font-weight: 400;
-//     font-style: italic;
-// }
+// Light normal
+@font-face {
+    font-family: "Open sans";
+    src: url("../fonts/OpenSans-Light.ttf");
+    font-weight: 300;
+    font-style: normal;
+}
 
-// // Light normal
-// @font-face {
-//     font-family: Quicksand;
-//     src: url('../assets/fonts/Quicksand-light.otf');
-//     font-weight: 200;
-//     font-style: normal;
-// }
+// Bold normal
+@font-face {
+    font-family: "Open sans";
+    src: url("../fonts/OpenSans-Bold.ttf");
+    font-weight: 700;
+    font-style: normal;
+}
 
-// // Light italic
-// @font-face {
-//     font-family: Quicksand;
-//     src: url('../assets/fonts/Quicksand-lightitalic.otf');
-//     font-weight: 200;
-//     font-style: italic;
-// }
-
-// // Bold normal
-// @font-face {
-//     font-family: Quicksand;
-//     src: url('../assets/fonts/Quicksand-Bold.otf');
-//     font-weight: 700;
-//     font-style: normal;
-// }
-
-// // Bold italic
-// @font-face {
-//     font-family: Quicksand;
-//     src: url('../assets/fonts/Quicksand-Bolditalic.otf');
-//     font-weight: 700;
-//     font-style: italic;
-// }
+// ExtraBold normal
+@font-face {
+    font-family: "Open sans";
+    src: url("../fonts/OpenSans-ExtraBold.ttf");
+    font-weight: 800;
+    font-style: normal;
+}

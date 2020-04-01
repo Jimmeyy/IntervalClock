@@ -24,6 +24,10 @@ body {
     width: 420px;
     padding: 45px 40px;
     background-color: $side-menu-bg;
+
+    @include breakpoint-min(1201px) {
+        animation: fade-to-right 0.5s ease forwards;
+    }
 }
 
 // logo
@@ -203,20 +207,38 @@ body {
         padding: 90px 160px 110px 160px;
         border-radius: 360px;
         background-color: $timer-bg;
+
+        @include breakpoint-min(1201px) {
+            opacity: 0;
+            animation: fade-in 0.5s 0.5s ease forwards;
+        }
     }
 
     &-header {
         // here
+        @include breakpoint-min(1201px) {
+            opacity: 0;
+            animation: fade-in 0.33s 1s ease forwards;
+        }
     }
 
     &-content {
         // here
+        @include breakpoint-min(1201px) {
+            opacity: 0;
+            animation: fade-in 0.33s 1.33s ease forwards;
+        }
     }
 
     &-footer {
         display: flex;
         width: 100%;
         justify-content: space-between;
+
+        @include breakpoint-min(1201px) {
+            opacity: 0;
+            animation: fade-in 0.33s 1.66s ease forwards;
+        }
 
         &-col {
             text-align: center;

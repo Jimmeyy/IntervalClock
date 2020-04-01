@@ -1,1 +1,137 @@
 // here
+
+body {
+    font-size: 16px;
+    color: $font-white;
+    font-family: "Open sans", sans-serif;
+    font-weight: 400;
+}
+
+.main {
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+    background: $app-bg-gradient;
+}
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 420px;
+    padding: 45px 40px;
+    background-color: $side-menu-bg;
+}
+
+.logo {
+    margin-bottom: 40px;
+
+    img {
+        width: 250px;
+    }
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    &-wrapper {
+        height: calc(100% - 20px - 50px - 50px);
+    }
+
+    &-inputs {
+        // here
+    }
+
+    &-btns {
+        margin-top: auto;
+
+        &-divider {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+
+            .btn {
+                flex-basis: 48%;
+            }
+        }
+    }
+}
+
+.input {
+    &-wrapper {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 25px;
+        padding-bottom: 25px;
+        border-bottom: 1px solid #444444;
+    }
+
+    &-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+
+        label {
+            font-weight: 300;
+            font-size: 14px;
+            font-weight: 700;
+            color: $yellow;
+        }
+
+        img {
+            width: 20px;
+        }
+    }
+
+    &-main {
+        input {
+            width: 100%;
+            border: 0;
+            background-color: $input-bg;
+            border-radius: 5px;
+            padding: 14px 20px;
+            font-size: 16px;
+            font-family: "Open sans", sans-serif;
+            color: $font-white;
+        }
+    }
+
+    &-error {
+        display: none;
+
+        p {
+            margin-top: 8px;
+            color: $error-red;
+            font-size: 14px;
+        }
+
+        &.is-active {
+            display: block;
+        }
+    }
+}
+
+.btn {
+    width: 100%;
+    background-color: #686868;
+    padding: 16px 14px;
+    border-radius: 5px;
+    color: $font-white;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    font-weight: 700;
+    font-size: 16px;
+    font-family: "Open sans", sans-serif;
+
+    &.yellow {
+        background-color: $yellow;
+    }
+
+    &.red {
+        background-color: $error-red;
+    }
+}

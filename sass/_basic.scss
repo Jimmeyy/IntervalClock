@@ -11,8 +11,11 @@ body {
     position: relative;
     overflow: hidden;
     height: 100vh;
-    padding-left: 420px;
     background: $app-bg-gradient;
+
+    @include breakpoint-min(1201px) {
+        padding-left: 420px;
+    }
 }
 
 // side menu
@@ -21,12 +24,40 @@ body {
     top: 0;
     left: 0;
     height: 100%;
-    width: 420px;
-    padding: 45px 40px;
+    width: 100%;
+    padding: 80px 20px 45px 20px;
     background-color: $side-menu-bg;
+    overflow: auto;
+
+    @include breakpoint-max(1200px) {
+        transition: all 0.3s;
+        transform: translateX(100%);
+
+        &.is-active {
+            transform: translateX(0);
+        }
+    }
 
     @include breakpoint-min(1201px) {
+        width: 420px;
+        padding: 45px 40px;
         animation: fade-to-right 0.5s ease forwards;
+    }
+
+    &-close {
+        position: absolute;
+        top: 30px;
+        right: 22px;
+        width: 20px;
+        height: 20px;
+
+        img {
+            width: 100%;
+        }
+
+        @include breakpoint-min(1201px) {
+            display: none;
+        }
     }
 }
 
@@ -37,6 +68,10 @@ body {
     img {
         width: 250px;
     }
+
+    @include breakpoint-max(1200px) {
+        display: none;
+    }
 }
 
 // form
@@ -46,7 +81,12 @@ body {
     height: 100%;
 
     &-wrapper {
-        height: calc(100% - 20px - 50px - 50px);
+        min-height: calc(100% - 20px - 50px - 50px);
+
+        @include breakpoint-max(1200px) {
+            max-width: 500px;
+            margin: 0 auto;
+        }
     }
 
     &-inputs {
@@ -176,18 +216,38 @@ body {
 
 // headings
 .heading {
-    font-size: 68px;
+    font-size: 38px;
     font-weight: 800;
     color: $font-white;
 
+    @include breakpoint-min(1201px) {
+        font-size: 68px;
+    }
+
     &.timer {
-        font-size: 200px;
+        font-size: 90px;
         color: $yellow;
+
+        @include breakpoint-min(370px) {
+            font-size: 105px;
+        }
+
+        @include breakpoint-min(768px) {
+            font-size: 150px;
+        }
+
+        @include breakpoint-min(1201px) {
+            font-size: 200px;
+        }
     }
 
     &.small {
-        font-size: 32px;
+        font-size: 22px;
         font-weight: 700;
+
+        @include breakpoint-min(1201px) {
+            font-size: 32px;
+        }
     }
 }
 
@@ -204,11 +264,18 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 90px 160px 110px 160px;
-        border-radius: 360px;
+        padding: 60px 20px 80px 20px;
         background-color: $timer-bg;
+        border-radius: 80px;
+
+        @include breakpoint-max(1200px) {
+            width: 100%;
+            max-width: 560px;
+        }
 
         @include breakpoint-min(1201px) {
+            padding: 90px 160px 110px 160px;
+            border-radius: 360px;
             opacity: 0;
             animation: fade-in 0.5s 0.5s ease forwards;
         }
@@ -233,9 +300,10 @@ body {
     &-footer {
         display: flex;
         width: 100%;
-        justify-content: space-between;
+        justify-content: space-around;
 
         @include breakpoint-min(1201px) {
+            justify-content: space-between;
             opacity: 0;
             animation: fade-in 0.33s 1.66s ease forwards;
         }
@@ -244,10 +312,47 @@ body {
             text-align: center;
 
             span {
-                font-size: 38px;
+                font-size: 24px;
                 font-weight: 400;
                 color: $yellow;
+
+                @include breakpoint-min(1201px) {
+                    font-size: 38px;
+                }
             }
         }
+    }
+}
+
+// mobile topbar
+.mobile-topbar {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 15px;
+
+    &-logo {
+        width: 170px;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    &-menu {
+        width: 26px;
+        height: 26px;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    @include breakpoint-min(1201px) {
+        display: none;
     }
 }

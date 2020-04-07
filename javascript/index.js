@@ -1,3 +1,7 @@
+// Styles import
 import '../sass/main.scss';
 
-console.log('foo');
+// JS imports
+import './logic.js';
+
+

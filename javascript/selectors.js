@@ -1,8 +1,8 @@
-const selectors = function() {
+const selectors = function () {
     const inputs = {
         rounds: document.querySelector('#rounds'),
         workTime: document.querySelector('#work-time'),
-        breakTime: document.querySelector('#break-time'),
+        restTime: document.querySelector('#rest-time'),
         warmup: document.querySelector('#warmup-time')
     }
 
@@ -13,14 +13,18 @@ const selectors = function() {
     }
 
     const clock = {
-        header: document.querySelector('#clock-header'),
+        heading: document.querySelector('#clock-header'),
         timer: document.querySelector('#clock-timer'),
         roundsDone: document.querySelector('#clock-rounds-done'),
         roundsAll: document.querySelector('#clock-rounds-all'),
         timeRemaining: document.querySelector('#clock-time-remaining')
     }
 
-    return {inputs, btns, clock}
+    return {
+        inputs,
+        btns,
+        clock
+    }
 }
 
 export default selectors;

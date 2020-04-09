@@ -1,116 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Interval clock timer</title>
-    </head>
-    <body>
-        <div class="wrapper">
-            <main class="main">
-                <!-- Mobile topbar -->
-                <div class="mobile-topbar">
-                    <div class="mobile-topbar-logo">
-                        <img src="/img/Logo.svg" alt="intervalclock-logo" />
-                    </div>
-                    <div class="mobile-topbar-menu">
-                        <img src="/img/mobile-menu.svg" alt="" />
-                    </div>
-                </div>
-                <!-- Side menu -->
-                <div class="side-menu is-active">
-                    <div class="logo">
-                        <img src="/img/Logo.svg" alt="intervalclock-logo" />
-                    </div>
-                    <div class="side-menu-close">
-                        <img src="/img/close.svg" alt="close-icon" />
-                    </div>
-                    <div class="form-wrapper">
-                        <form class="form">
-                            <div class="form-inputs">
-                                <div class="input-wrapper">
-                                    <div class="input-header">
-                                        <label for="rounds">Rounds</label>
-                                        <img src="img/round-icon.svg" alt="round-icon" />
-                                    </div>
-                                    <div class="input-main">
-                                        <input id="rounds" name="rounds" type="text" placeholder="Rounds number" />
-                                    </div>
-                                    <div class="input-error">
-                                        <p>The entered value is incorrect.</p>
-                                    </div>
-                                </div>
-                                <div class="input-wrapper">
-                                    <div class="input-header">
-                                        <label for="work-time">Work time</label>
-                                        <img src="img/clock-icon.svg" alt="round-icon" />
-                                    </div>
-                                    <div class="input-main">
-                                        <input id="work-time" name="work-time" type="text" placeholder="Work time (in round)" />
-                                    </div>
-                                    <div class="input-error">
-                                        <p>The entered value is incorrect.</p>
-                                    </div>
-                                </div>
-                                <div class="input-wrapper">
-                                    <div class="input-header">
-                                        <label for="break-time">Break time</label>
-                                        <img src="img/hourglass-icon.svg" alt="round-icon" />
-                                    </div>
-                                    <div class="input-main">
-                                        <input id="break-time" name="break-time" type="text" placeholder="Break time (in round)" />
-                                    </div>
-                                    <div class="input-error">
-                                        <p>The entered value is incorrect.</p>
-                                    </div>
-                                </div>
-                                <div class="input-wrapper">
-                                    <div class="input-header">
-                                        <label for="warmup-time">Warmup time</label>
-                                        <img src="img/clock-icon.svg" alt="round-icon" />
-                                    </div>
-                                    <div class="input-main">
-                                        <input id="warmup-time" name="warmup-time" type="text" placeholder="Warmup time" />
-                                    </div>
-                                    <div class="input-error">
-                                        <p>The entered value is incorrect.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-btns">
-                                <button id="start-btn" class="btn yellow">Start timer</button>
-                                <div class="form-btns-divider">
-                                    <button id="pause-btn" class="btn border-yellow">Pause</button>
-                                    <button id="reset-btn" class="btn border-red">Reset</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <!-- clock component -->
-                <div class="clock-wrapper">
-                    <div class="clock-main">
-                        <div class="clock-header">
-                            <h2 id="clock-header" class="heading">WARMUP</h2>
-                        </div>
-                        <div class="clock-content">
-                            <h2 id="clock-timer" class="heading timer">30:00</h2>
-                        </div>
-                        <div class="clock-footer">
-                            <div class="clock-footer-col">
-                                <h3 class="heading small">Round</h3>
-                                <span><span id="clock-rounds-done">2</span> / <span id="clock-rounds-all">10</span></span>
-                            </div>
-                            <div class="clock-footer-col">
-                                <h3 class="heading small">Remaining</h3>
-                                <span id="clock-time-remaining">16 : 08</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
-        </div>
-    </body>
 
-    <script src="javascript/index.js"></script>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interval clock timer</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <main class="main">
+            <!-- Mobile topbar -->
+            <div class="mobile-topbar">
+                <div class="mobile-topbar-logo">
+                    <img src="/img/Logo.svg" alt="intervalclock-logo" />
+                </div>
+                <div class="mobile-topbar-menu">
+                    <img src="/img/mobile-menu.svg" alt="" />
+                </div>
+            </div>
+            <!-- Side menu -->
+            <div class="side-menu is-active">
+                <div class="logo">
+                    <img src="/img/Logo.svg" alt="intervalclock-logo" />
+                </div>
+                <div class="side-menu-close">
+                    <img src="/img/close.svg" alt="close-icon" />
+                </div>
+                <div class="form-wrapper">
+                    <form class="form">
+                        <div class="form-inputs">
+                            <div class="input-wrapper">
+                                <div class="input-header">
+                                    <label for="rounds">Rounds</label>
+                                    <img src="img/round-icon.svg" alt="round-icon" />
+                                </div>
+                                <div class="input-main">
+                                    <input id="rounds" name="rounds" type="text" placeholder="Rounds number" />
+                                </div>
+                                <div class="input-error">
+                                    <p>The entered value is incorrect.</p>
+                                </div>
+                            </div>
+                            <div class="input-wrapper">
+                                <div class="input-header">
+                                    <label for="work-time">Work time</label>
+                                    <img src="img/clock-icon.svg" alt="round-icon" />
+                                </div>
+                                <div class="input-main">
+                                    <input id="work-time" name="work-time" type="text"
+                                        placeholder="Work time (in round)" />
+                                </div>
+                                <div class="input-error">
+                                    <p>The entered value is incorrect.</p>
+                                </div>
+                            </div>
+                            <div class="input-wrapper">
+                                <div class="input-header">
+                                    <label for="rest-time">Break time</label>
+                                    <img src="img/hourglass-icon.svg" alt="round-icon" />
+                                </div>
+                                <div class="input-main">
+                                    <input id="rest-time" name="rest-time" type="text"
+                                        placeholder="Break time (in round)" />
+                                </div>
+                                <div class="input-error">
+                                    <p>The entered value is incorrect.</p>
+                                </div>
+                            </div>
+                            <div class="input-wrapper">
+                                <div class="input-header">
+                                    <label for="warmup-time">Warmup time</label>
+                                    <img src="img/clock-icon.svg" alt="round-icon" />
+                                </div>
+                                <div class="input-main">
+                                    <input id="warmup-time" name="warmup-time" type="text" placeholder="Warmup time" />
+                                </div>
+                                <div class="input-error">
+                                    <p>The entered value is incorrect.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-btns">
+                            <button id="start-btn" class="btn yellow">Start timer</button>
+                            <div class="form-btns-divider">
+                                <button id="pause-btn" class="btn border-yellow">Pause</button>
+                                <button id="reset-btn" class="btn border-red">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- clock component -->
+            <div class="clock-wrapper">
+                <div class="clock-main">
+                    <div class="clock-header">
+                        <h2 id="clock-header" class="heading">WARMUP</h2>
+                    </div>
+                    <div class="clock-content">
+                        <h2 id="clock-timer" class="heading timer">30:00</h2>
+                    </div>
+                    <div class="clock-footer">
+                        <div class="clock-footer-col">
+                            <h3 class="heading small">Round</h3>
+                            <span><span id="clock-rounds-done">0</span> / <span id="clock-rounds-all">0</span></span>
+                        </div>
+                        <div class="clock-footer-col">
+                            <h3 class="heading small">Remaining</h3>
+                            <span id="clock-time-remaining">16 : 08</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+<script src="javascript/index.js"></script>
+
 </html>

@@ -13,8 +13,17 @@ const convertToTime = function (time) {
         minutes,
         seconds,
     };
-}
+};
 
-export {
-    convertToTime
-}
+// Format time string
+const formatTimeString = function (time) {
+    const hours = ('0' + time.hours).slice(-2);
+    const minutes = ('0' + time.minutes).slice(-2);
+    const seconds = ('0' + time.seconds).slice(-2);
+    if (time.hours) {
+        return `${hours}:${minutes}:${seconds}`;
+    }
+    return `${minutes}:${seconds}`;
+};
+
+export { convertToTime, formatTimeString };

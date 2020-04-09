@@ -1,19 +1,10 @@
 import selectors from './selectors';
-import {
-    convertToTime,
-    formatTimeString
-} from './helpers';
-import {
-    headingTexts
-} from './resources';
+import { convertToTime, formatTimeString } from './helpers';
+import { headingTexts } from './resources';
 
 const logic = function () {
     // Get inputs, buttons and clock html elements
-    const {
-        inputs,
-        btns,
-        clock
-    } = selectors();
+    const { inputs, btns, clock } = selectors();
 
     const prepareTime = 5;
     let remainingTime = 0;
@@ -21,37 +12,22 @@ const logic = function () {
 
     // Prepare interval
     function startInterval(time, callback = null) {
-        function intervalToDo() {
-            const {
-                hours,
-                minutes,
-                seconds
-            } = convertToTime(time);
-            const dateTimeDisplay = formatTimeString({
-                hours,
-                minutes,
-                seconds,
-            });
-
-            if (callback) {
-                callback(dateTimeDisplay);
-            }
-
-            time--;
-        }
-
         function intervalEnd() {
             window.clearInterval(interval);
         }
 
         const interval = setInterval(() => {
-            intervalToDo();
+            const { hours, minutes, seconds } = convertToTime(time);
+            const dateTimeDisplay = formatTimeString({ hours, minutes, seconds });
+            if (callback) {
+                callback(dateTimeDisplay);
+            }
+            time--;
         }, 1000);
 
         setTimeout(intervalEnd, time * 1000);
 
-        const promise = new Promise((intervalEnd) => setTimeout(intervalEnd, time * 1000));
-        return promise;
+        return new Promise((intervalEnd) => setTimeout(intervalEnd, time * 1000));
     }
 
     function prepare(displayTime) {
@@ -95,18 +71,12 @@ const logic = function () {
 
     // Handle start button click
     async function handleStartClick(event) {
-        // event.preventDefault();
-        // const roundsNumber = parseInt(inputs.rounds.value);
-        // const workTime = parseInt(inputs.workTime.value);
-        // const restTime = parseInt(inputs.workTime.value);
-        // const warmupTime = parseInt(inputs.warmup.value);
-
-        // --------------------------------------------------------
-        // Values from inputs
-        const roundsNumber = 3;
-        const workTime = 3;
-        const restTime = 3;
-        const warmupTime = 5;
+        event.preventDefault();
+        // Input values
+        const roundsNumber = parseInt(inputs.rounds.value);
+        const workTime = parseInt(inputs.workTime.value);
+        const restTime = parseInt(inputs.workTime.value);
+        const warmupTime = parseInt(inputs.warmup.value);
         // Clock values
         remainingTime = (workTime + restTime) * roundsNumber + warmupTime + prepareTime;
         // Set rounds amount
@@ -121,11 +91,9 @@ const logic = function () {
             await startInterval(restTime, rest);
         }
         endWorkout();
-        // --------------------------------------------------------
     }
 
-    handleStartClick();
-    // btns.start.addEventListener('click', handleStartClick);
+    btns.start.addEventListener('click', handleStartClick);
 };
 
 export default logic();

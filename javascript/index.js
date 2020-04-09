@@ -3,5 +3,4 @@ import '../sass/main.scss';
 
 // JS imports
 import './logic.js';
-
-
+import './mobileMenu';

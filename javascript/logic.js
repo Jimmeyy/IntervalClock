@@ -1,48 +1,74 @@
 import selectors from './selectors';
+import {
+    convertToTime
+} from './helpers';
 
 const logic = function () {
-    const { inputs, btns, clock } = selectors();
+    // Get inputs, buttons and clock html elements
+    const {
+        inputs,
+        btns,
+        clock
+    } = selectors();
 
-    // Convert number to hours, minutes and seconds
-    function convertToTime(time) {
-        const hours = Math.floor(time / 3600);
-        if (time >= 3600) {
-            const hoursAmount = Math.floor(time / 3600);
-            time = time - hoursAmount * 3600;
+    // Prepare interval
+    function startInterval(time) {
+        function intervalToDo() {
+            const {
+                hours,
+                minutes,
+                seconds
+            } = convertToTime(time);
+            const dateTimeDisplay = `${hours}:${minutes}:${seconds}`;
+            console.log(dateTimeDisplay);
+            time--;
         }
-        const minutes = Math.floor(time / 60);
-        const seconds = time % 60;
 
-        return {
-            hours,
-            minutes,
-            seconds,
-        };
+        function intervalEnd() {
+            window.clearInterval(interval);
+        }
+
+        intervalToDo();
+        const interval = setInterval(() => {
+            intervalToDo();
+        }, 1000);
+
+        setTimeout(intervalEnd, time * 1000);
+
+        const promise = new Promise((intervalEnd) => setTimeout(intervalEnd, time * 1000));
+        return promise;
     }
 
     // Handle start button click
-    function handleStartClick(event) {
+    async function handleStartClick(event) {
         // event.preventDefault();
+        // const roundsNumber = parseInt(inputs.rounds.value);
+        // const workTime = parseInt(inputs.workTime.value);
+        // const breakTime = parseInt(inputs.workTime.value);
+        // const warmup = parseInt(inputs.warmup.value);
 
-        // const roundsNumber = parseFloat(inputs.rounds.value);
-        // const workTime = parseFloat(inputs.workTime.value);
-        // const breakTime = parseFloat(inputs.workTime.value);
-        // const warmup = parseFloat(inputs.warmup.value);
-        // let time = (workTime + breakTime) * roundsNumber + warmup;
-
-        // temp
+        // --------------------------------------------------------
+        // Values from inputs
         const roundsNumber = 5;
-        const workTime = 5;
-        const breakTime = 2;
-        const warmup = 0;
-        let time = parseInt(566);
-        let dateTime = convertToTime(time);
+        const workTime = 10;
+        const breakTime = 5;
+        const warmup = 10;
+        // Clock values
+        const prepareTime = 5;
+        let remainingTime = (workTime + breakTime) * roundsNumber + warmup;
+        let roundsCounter = 1;
+        let setTime = workTime + breakTime;
 
-        setInterval(() => {
-            console.log(roundsNumber);
-            roundsNumber--;
-        }, (workTime + breakTime) * 1000);
+        await startInterval(prepareTime);
+        startInterval(remainingTime);
+        await startInterval(warmup);
+        for (let i = roundsCounter; i < roundsNumber; i++) {
+            await startInterval(workTime);
+            await startInterval(breakTime);
+        }
+        // --------------------------------------------------------
     }
+
     handleStartClick();
     // btns.start.addEventListener('click', handleStartClick);
 };

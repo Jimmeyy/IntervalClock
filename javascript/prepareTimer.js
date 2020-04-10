@@ -1,37 +1,37 @@
 import selectors from './selectors';
-import { convertToTime, formatTimeString, getSound } from './helpers';
 import { headingTexts } from './resources';
-import { Timer } from 'interval-timer';
+import { Timer, pad } from 'interval-timer';
 
 const { clock } = selectors();
+const duration = 5;
+
+const options = {
+    startTime: duration * 1000,
+    countdown: true,
+    updateFrequency: 1000,
+    animationFrame: true,
+};
+
+const timer = new Timer(options);
 
 const prepareTimer = function (nextTimer) {
-    const htmlHeading = clock.heading;
-    const htmlElement = clock.timer;
-    const duration = 5;
-    let time = duration;
-
-    const options = {
-        updateFrequency: 1000,
-        endTime: 1000 * duration,
-    };
-
-    const timer = new Timer(options);
-
     timer.on('start', () => {
-        htmlHeading.innerHTML = headingTexts.prepare;
+        clock.heading.innerHTML = headingTexts.prepare;
     });
 
     timer.on('update', () => {
-        const { hours, minutes, seconds } = convertToTime(time);
-        const dateTimeDisplay = formatTimeString({ hours, minutes, seconds });
-        htmlElement.innerHTML = dateTimeDisplay;
-        time--;
+        const { hours, minutes, seconds } = timer.getTime;
+        let timeToDisplay;
+        if (hours) {
+            timeToDisplay = pad('00', hours, true) + ':' + pad('00', minutes, true) + ':' + pad('00', seconds, true);
+        } else {
+            timeToDisplay = pad('00', minutes, true) + ':' + pad('00', seconds, true);
+        }
+        clock.timer.innerHTML = timeToDisplay;
     });
 
     timer.on('end', () => {
-        console.log('End prepare timer');
-        nextTimer.start();
+        nextTimer && nextTimer.start();
     });
 
     return timer;

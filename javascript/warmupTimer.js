@@ -1,39 +1,41 @@
 import selectors from './selectors';
-import { convertToTime, formatTimeString, getSound } from './helpers';
 import { headingTexts } from './resources';
-import { Timer } from 'interval-timer';
+import { Timer, pad } from 'interval-timer';
 
 const { inputs, clock } = selectors();
+const duration = inputs.warmup.value;
+console.log(duration);
 
-const prepareTimer = function () {
-    const htmlHeading = clock.heading;
-    const htmlElement = clock.timer;
-    const duration = inputs.warmup.value;
-    let time = duration;
+const options = {
+    startTime: duration * 1000,
+    countdown: true,
+    updateFrequency: 1000,
+    animationFrame: true,
+};
 
-    const options = {
-        updateFrequency: 1000,
-        endTime: 1000 * duration,
-    };
+const timer = new Timer(options);
 
-    const timer = new Timer(options);
-
+const warmupTimer = function (nextTimer) {
     timer.on('start', () => {
-        htmlHeading.innerHTML = headingTexts.warmup;
+        clock.heading.innerHTML = headingTexts.warmup;
     });
 
     timer.on('update', () => {
-        const { hours, minutes, seconds } = convertToTime(time);
-        const dateTimeDisplay = formatTimeString({ hours, minutes, seconds });
-        htmlElement.innerHTML = dateTimeDisplay;
-        time--;
+        const { hours, minutes, seconds } = timer.getTime;
+        let timeToDisplay;
+        if (hours) {
+            timeToDisplay = pad('00', hours, true) + ':' + pad('00', minutes, true) + ':' + pad('00', seconds, true);
+        } else {
+            timeToDisplay = pad('00', minutes, true) + ':' + pad('00', seconds, true);
+        }
+        clock.timer.innerHTML = timeToDisplay;
     });
 
     timer.on('end', () => {
-        console.log('End warmup timer');
+        nextTimer && nextTimer.start();
     });
 
     return timer;
 };
 
-export default prepareTimer;
+export default warmupTimer;

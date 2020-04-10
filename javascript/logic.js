@@ -8,23 +8,29 @@ import warmupTimer from './warmupTimer';
 const logic = function () {
     const { btns, inputs } = selectors();
     fillInputs(inputs);
+    let isPause = false;
 
-    async function startLoop() {
-        const timerWarmup = warmupTimer();
-        const timerPrepare = prepareTimer(timerWarmup);
+    const timerWarmup = warmupTimer();
+    const timerPrepare = prepareTimer(timerWarmup);
 
-        timerPrepare.start();
+    // Handle pasue click
+    function handlePauseClick(event) {
+        event.preventDefault();
+
+        timerPrepare.pause();
     }
 
+    // Handle start click
     function handleStartClick(event) {
         event.preventDefault();
 
         if (!validation()) {
-            startLoop();
+            timerPrepare.start();
         }
     }
 
     btns.start.addEventListener('click', handleStartClick);
+    btns.pause.addEventListener('click', handlePauseClick);
 };
 
 export default logic();

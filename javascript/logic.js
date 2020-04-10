@@ -1,12 +1,23 @@
 import selectors from './selectors';
-import { convertToTime, formatTimeString, getSound, fillInputs } from './helpers';
-import { headingTexts } from './resources';
+import {
+    convertToTime,
+    formatTimeString,
+    getSound,
+    fillInputs
+} from './helpers';
+import {
+    headingTexts
+} from './resources';
 import './validation';
 import validation from './validation';
 
 const logic = function () {
     // Get inputs, buttons and clock html elements
-    const { inputs, btns, clock } = selectors();
+    const {
+        inputs,
+        btns,
+        clock
+    } = selectors();
     fillInputs(inputs); // temp
 
     let startValues = {};
@@ -21,7 +32,11 @@ const logic = function () {
         }
 
         const interval = setInterval(() => {
-            const { hours, minutes, seconds } = convertToTime(time);
+            const {
+                hours,
+                minutes,
+                seconds
+            } = convertToTime(time);
             const dateTimeDisplay = formatTimeString({
                 hours,
                 minutes,
@@ -87,6 +102,12 @@ const logic = function () {
         }, 1000);
     }
 
+    // Handle resset button click
+    function handleResetClick(event) {
+        event.preventDefault();
+        location.reload();
+    }
+
     // Handle start button click
     async function handleStartClick(event) {
         event.preventDefault();
@@ -121,6 +142,7 @@ const logic = function () {
     }
 
     btns.start.addEventListener('click', handleStartClick);
+    btns.reset.addEventListener('click', handleResetClick);
 };
 
 export default logic();

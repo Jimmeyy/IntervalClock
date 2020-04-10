@@ -1,6 +1,8 @@
 import selectors from './selectors';
 import { convertToTime, formatTimeString, getSound, fillInputs } from './helpers';
 import { headingTexts } from './resources';
+import './validation';
+import validation from './validation';
 
 const logic = function () {
     // Get inputs, buttons and clock html elements
@@ -88,32 +90,34 @@ const logic = function () {
     // Handle start button click
     async function handleStartClick(event) {
         event.preventDefault();
-        // Input values
-        const roundsNumber = parseInt(inputs.rounds.value);
-        const workTime = parseInt(inputs.workTime.value);
-        const restTime = parseInt(inputs.restTime.value);
-        const warmupTime = parseInt(inputs.warmup.value);
-        startValues = {
-            roundsNumber,
-            workTime,
-            restTime,
-            warmupTime,
-        };
+        if (!validation()) {
+            // Input values
+            const roundsNumber = parseInt(inputs.rounds.value);
+            const workTime = parseInt(inputs.workTime.value);
+            const restTime = parseInt(inputs.restTime.value);
+            const warmupTime = parseInt(inputs.warmup.value);
+            startValues = {
+                roundsNumber,
+                workTime,
+                restTime,
+                warmupTime,
+            };
 
-        // Clock values
-        remainingTime = (workTime + restTime) * roundsNumber + warmupTime + prepareTime;
-        // Set rounds amount
-        clock.roundsAll.innerHTML = roundsNumber;
+            // Clock values
+            remainingTime = (workTime + restTime) * roundsNumber + warmupTime + prepareTime;
+            // Set rounds amount
+            clock.roundsAll.innerHTML = roundsNumber;
 
-        startInterval(remainingTime, remaining);
-        await startInterval(prepareTime, prepare);
-        await startInterval(warmupTime, warmup);
-        for (let i = 0; i < roundsNumber; i++) {
-            roundsIncrement(roundsCounter);
-            await startInterval(workTime, work);
-            await startInterval(restTime, rest);
+            startInterval(remainingTime, remaining);
+            await startInterval(prepareTime, prepare);
+            await startInterval(warmupTime, warmup);
+            for (let i = 0; i < roundsNumber; i++) {
+                roundsIncrement(roundsCounter);
+                await startInterval(workTime, work);
+                await startInterval(restTime, rest);
+            }
+            endWorkout();
         }
-        endWorkout();
     }
 
     btns.start.addEventListener('click', handleStartClick);

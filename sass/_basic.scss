@@ -252,6 +252,18 @@ body {
             }
         }
     }
+
+    &.is-disabled {
+        background-color: #757575;
+        border-color: #757575;
+        cursor: not-allowed;
+
+        @include breakpoint-min(1201px) {
+            &:hover {
+                background-color: #757575;
+            }
+        }
+    }
 }
 
 // headings

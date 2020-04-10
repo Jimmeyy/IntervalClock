@@ -1,29 +1,20 @@
 import selectors from './selectors';
-import {
-    convertToTime,
-    formatTimeString,
-    getSound,
-    fillInputs
-} from './helpers';
-import {
-    headingTexts
-} from './resources';
+import { convertToTime, formatTimeString, getSound, fillInputs } from './helpers';
+import { headingTexts } from './resources';
 import './validation';
 import validation from './validation';
 
 const logic = function () {
     // Get inputs, buttons and clock html elements
-    const {
-        inputs,
-        btns,
-        clock
-    } = selectors();
+    const { inputs, btns, clock } = selectors();
     fillInputs(inputs); // temp
 
     let startValues = {};
     let prepareTime = 5;
     let remainingTime = 0;
     let roundsCounter = 0;
+    let isPaused = false;
+    let isStarted = false;
 
     // Prepare interval
     function startInterval(time, callback = null) {
@@ -32,11 +23,7 @@ const logic = function () {
         }
 
         const interval = setInterval(() => {
-            const {
-                hours,
-                minutes,
-                seconds
-            } = convertToTime(time);
+            const { hours, minutes, seconds } = convertToTime(time);
             const dateTimeDisplay = formatTimeString({
                 hours,
                 minutes,
@@ -102,16 +89,24 @@ const logic = function () {
         }, 1000);
     }
 
-    // Handle resset button click
+    // Handle reset button click
     function handleResetClick(event) {
         event.preventDefault();
         location.reload();
     }
 
+    // Handle pause button click
+    function handlePauseClick(event) {
+        event.preventDefault();
+        isPaused = !isPaused;
+    }
+
     // Handle start button click
     async function handleStartClick(event) {
         event.preventDefault();
-        if (!validation()) {
+        if (!validation() && !isStarted) {
+            isStarted = true;
+            btns.start.classList.add('is-disabled');
             // Input values
             const roundsNumber = parseInt(inputs.rounds.value);
             const workTime = parseInt(inputs.workTime.value);
@@ -138,11 +133,14 @@ const logic = function () {
                 await startInterval(restTime, rest);
             }
             endWorkout();
+            isStarted = false;
+            btns.start.classList.remove('is-disabled');
         }
     }
 
     btns.start.addEventListener('click', handleStartClick);
     btns.reset.addEventListener('click', handleResetClick);
+    btns.pause.addEventListener('click', handlePauseClick);
 };
 
 export default logic();

@@ -7,7 +7,8 @@ const logic = function () {
     const { inputs, btns, clock } = selectors();
     fillInputs(inputs); // temp
 
-    const prepareTime = 5;
+    let startValues = {};
+    let prepareTime = 5;
     let remainingTime = 0;
     let roundsCounter = 0;
 
@@ -25,7 +26,7 @@ const logic = function () {
                 seconds,
             });
             if (callback) {
-                callback(dateTimeDisplay);
+                callback(dateTimeDisplay, time);
             }
             time--;
         }, 1000);
@@ -44,21 +45,28 @@ const logic = function () {
         clock.timeRemaining.innerHTML = displayTime;
     }
 
-    function warmup(displayTime) {
-        clock.heading.innerHTML = headingTexts.warmup;
+    function warmup(displayTime, time) {
         clock.timer.innerHTML = displayTime;
-        // temp
-        getSound();
+        if (time === startValues.warmupTime) {
+            clock.heading.innerHTML = headingTexts.warmup;
+            getSound();
+        }
     }
 
-    function work(displayTime) {
-        clock.heading.innerHTML = headingTexts.work;
+    function work(displayTime, time) {
         clock.timer.innerHTML = displayTime;
+        if (time === startValues.workTime) {
+            clock.heading.innerHTML = headingTexts.work;
+            getSound();
+        }
     }
 
-    function rest(displayTime) {
-        clock.heading.innerHTML = headingTexts.rest;
+    function rest(displayTime, time) {
         clock.timer.innerHTML = displayTime;
+        if (time === startValues.restTime) {
+            clock.heading.innerHTML = headingTexts.rest;
+            getSound();
+        }
     }
 
     function roundsIncrement() {
@@ -73,6 +81,7 @@ const logic = function () {
             clock.heading.innerHTML = headingTexts.end;
             clock.timer.innerHTML = '00:00';
             clock.timeRemaining.innerHTML = '00:00';
+            getSound();
         }, 1000);
     }
 
@@ -84,6 +93,13 @@ const logic = function () {
         const workTime = parseInt(inputs.workTime.value);
         const restTime = parseInt(inputs.restTime.value);
         const warmupTime = parseInt(inputs.warmup.value);
+        startValues = {
+            roundsNumber,
+            workTime,
+            restTime,
+            warmupTime,
+        };
+
         // Clock values
         remainingTime = (workTime + restTime) * roundsNumber + warmupTime + prepareTime;
         // Set rounds amount

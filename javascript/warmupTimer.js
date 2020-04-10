@@ -3,12 +3,12 @@ import { convertToTime, formatTimeString, getSound } from './helpers';
 import { headingTexts } from './resources';
 import { Timer } from 'interval-timer';
 
-const { clock } = selectors();
+const { inputs, clock } = selectors();
 
-const prepareTimer = function (nextTimer) {
+const prepareTimer = function () {
     const htmlHeading = clock.heading;
     const htmlElement = clock.timer;
-    const duration = 5;
+    const duration = inputs.warmup.value;
     let time = duration;
 
     const options = {
@@ -19,7 +19,7 @@ const prepareTimer = function (nextTimer) {
     const timer = new Timer(options);
 
     timer.on('start', () => {
-        htmlHeading.innerHTML = headingTexts.prepare;
+        htmlHeading.innerHTML = headingTexts.warmup;
     });
 
     timer.on('update', () => {
@@ -30,8 +30,7 @@ const prepareTimer = function (nextTimer) {
     });
 
     timer.on('end', () => {
-        console.log('End prepare timer');
-        nextTimer.start();
+        console.log('End warmup timer');
     });
 
     return timer;

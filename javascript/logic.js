@@ -1,16 +1,19 @@
 import selectors from './selectors';
 import { fillInputs } from './helpers';
 import validation from './validation';
+// timers
 import prepareTimer from './prepareTimer';
+import warmupTimer from './warmupTimer';
 
 const logic = function () {
     const { btns, inputs } = selectors();
     fillInputs(inputs);
 
     async function startLoop() {
-        const timerPrepare = prepareTimer();
-        const foo = timerPrepare.start();
-        console.log(foo);
+        const timerWarmup = warmupTimer();
+        const timerPrepare = prepareTimer(timerWarmup);
+
+        timerPrepare.start();
     }
 
     function handleStartClick(event) {

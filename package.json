@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.9.2",
+    "interval-timer": "^1.1.1",
     "validator": "^13.0.0"
   }
 }

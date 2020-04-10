@@ -26,4 +26,23 @@ const formatTimeString = function (time) {
     return `${minutes}:${seconds}`;
 };
 
-export { convertToTime, formatTimeString };
+// Audio play
+const getSound = function () {
+    const audioUrl = require('../sounds/boxing-bell.mp3');
+    const audio = new Audio(audioUrl);
+    audio.play();
+};
+
+// Fill inputs with values (Development function)
+const fillInputs = function (inputs) {
+    window.addEventListener('keypress', (event) => {
+        if (event.key === 'f') {
+            inputs.rounds.value = 5;
+            inputs.workTime.value = 2;
+            inputs.restTime.value = 2;
+            inputs.warmup.value = 10;
+        }
+    });
+};
+
+export { convertToTime, formatTimeString, getSound, fillInputs };

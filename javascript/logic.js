@@ -1,10 +1,11 @@
 import selectors from './selectors';
-import { convertToTime, formatTimeString } from './helpers';
+import { convertToTime, formatTimeString, getSound, fillInputs } from './helpers';
 import { headingTexts } from './resources';
 
 const logic = function () {
     // Get inputs, buttons and clock html elements
     const { inputs, btns, clock } = selectors();
+    fillInputs(inputs); // temp
 
     const prepareTime = 5;
     let remainingTime = 0;
@@ -18,7 +19,11 @@ const logic = function () {
 
         const interval = setInterval(() => {
             const { hours, minutes, seconds } = convertToTime(time);
-            const dateTimeDisplay = formatTimeString({ hours, minutes, seconds });
+            const dateTimeDisplay = formatTimeString({
+                hours,
+                minutes,
+                seconds,
+            });
             if (callback) {
                 callback(dateTimeDisplay);
             }
@@ -42,6 +47,8 @@ const logic = function () {
     function warmup(displayTime) {
         clock.heading.innerHTML = headingTexts.warmup;
         clock.timer.innerHTML = displayTime;
+        // temp
+        getSound();
     }
 
     function work(displayTime) {
@@ -75,7 +82,7 @@ const logic = function () {
         // Input values
         const roundsNumber = parseInt(inputs.rounds.value);
         const workTime = parseInt(inputs.workTime.value);
-        const restTime = parseInt(inputs.workTime.value);
+        const restTime = parseInt(inputs.restTime.value);
         const warmupTime = parseInt(inputs.warmup.value);
         // Clock values
         remainingTime = (workTime + restTime) * roundsNumber + warmupTime + prepareTime;

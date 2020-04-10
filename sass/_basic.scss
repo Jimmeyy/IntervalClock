@@ -280,24 +280,16 @@ body {
             padding: 90px 160px 110px 160px;
             border-radius: 360px;
             opacity: 0;
-            animation: fade-in 0.5s 0.5s ease forwards;
+            animation: fade-in 0.5s ease forwards;
         }
     }
 
     &-header {
         // here
-        @include breakpoint-min(1201px) {
-            opacity: 0;
-            animation: fade-in 0.33s 1s ease forwards;
-        }
     }
 
     &-content {
         // here
-        @include breakpoint-min(1201px) {
-            opacity: 0;
-            animation: fade-in 0.33s 1.33s ease forwards;
-        }
     }
 
     &-footer {
@@ -307,8 +299,6 @@ body {
 
         @include breakpoint-min(1201px) {
             justify-content: space-between;
-            opacity: 0;
-            animation: fade-in 0.33s 1.66s ease forwards;
         }
 
         &-col {

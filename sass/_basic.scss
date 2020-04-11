@@ -104,7 +104,6 @@ body {
         @include breakpoint-min(1201px) {
             min-height: calc(100% - 90px);
         }
-
     }
 
     &-inputs {
@@ -184,7 +183,7 @@ body {
                 margin: 0;
             }
 
-            &[type=number] {
+            &[type="number"] {
                 -moz-appearance: textfield;
             }
         }
@@ -351,6 +350,7 @@ body {
 
         @include breakpoint-min(1201px) {
             justify-content: space-between;
+            width: 500px;
         }
 
         &-col {

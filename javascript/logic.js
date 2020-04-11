@@ -4,6 +4,7 @@ import validation from './validation';
 // timers
 import prepareTimer from './prepareTimer';
 import warmupTimer from './warmupTimer';
+import workTimer from './workTimer';
 
 const logic = function () {
     const { btns, inputs } = selectors();
@@ -13,19 +14,23 @@ const logic = function () {
 
     let timerWarmup;
     let timerPrepare;
+    let timerWork;
+    let timerRest;
 
     // Handle start click
     function handleStartClick(event) {
         event.preventDefault();
         if (!validation()) {
             if (!isStart) {
-                timerWarmup = warmupTimer();
+                timerWork = workTimer();
+                timerWarmup = warmupTimer(timerWork);
                 timerPrepare = prepareTimer(timerWarmup);
                 timerPrepare.start();
                 isStart = true;
             } else {
                 timerPrepare.isPaused && timerPrepare.start();
                 timerWarmup.isPaused && timerWarmup.start();
+                timerWork.isPaused && timerWork.start();
             }
         }
     }
@@ -36,6 +41,7 @@ const logic = function () {
         if (isStart) {
             timerPrepare.pause();
             timerWarmup.pause();
+            timerWork.pause();
         }
     }
 

@@ -1,3 +1,5 @@
+import { pad } from 'interval-timer';
+
 // Convert number to hours, minutes and seconds
 const convertToTime = function (time) {
     const hours = Math.floor(time / 3600);
@@ -33,6 +35,19 @@ const getSound = function () {
     audio.play();
 };
 
+// Convert time to disaplay
+const timeToDisplay = function (time) {
+    const { hours, minutes, seconds } = time;
+    let timeToDisplay;
+    if (hours) {
+        timeToDisplay = pad('00', hours, true) + ':' + pad('00', minutes, true) + ':' + pad('00', seconds, true);
+    } else {
+        timeToDisplay = pad('00', minutes, true) + ':' + pad('00', seconds, true);
+    }
+
+    return timeToDisplay;
+};
+
 // Fill inputs with values (Development function)
 const fillInputs = function (inputs) {
     window.addEventListener('keypress', (event) => {
@@ -45,4 +60,4 @@ const fillInputs = function (inputs) {
     });
 };
 
-export { convertToTime, formatTimeString, getSound, fillInputs };
+export { convertToTime, formatTimeString, getSound, fillInputs, timeToDisplay };

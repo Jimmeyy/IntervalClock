@@ -5,7 +5,7 @@ import { timeToDisplay, getSound } from './helpers';
 
 const { inputs, clock } = selectors();
 
-const restTimer = function (nextTimer) {
+const restTimer = function () {
     const duration = inputs.restTime.value;
     const options = {
         startTime: duration * 1000,
@@ -14,6 +14,12 @@ const restTimer = function (nextTimer) {
         animationFrame: true,
     };
     const timer = new Timer(options);
+
+    timer.nextTimer = null;
+
+    timer.setNextTimer = function (nextTimer) {
+        timer.nextTimer = nextTimer;
+    };
 
     timer.on('start', () => {
         clock.heading.innerHTML = headingTexts.rest;
@@ -25,7 +31,7 @@ const restTimer = function (nextTimer) {
     });
 
     timer.on('end', () => {
-        nextTimer && nextTimer.start();
+        timer.nextTimer && timer.nextTimer.start();
     });
 
     return timer;

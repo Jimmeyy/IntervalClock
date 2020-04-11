@@ -19,8 +19,12 @@ const workTimer = function (nextTimer) {
     timer.on('start', () => {
         rounds.counter++;
         clock.roundsDone.innerHTML = rounds.counter;
-        clock.heading.innerHTML = headingTexts.work;
         getSound();
+        clock.heading.innerHTML = headingTexts.work;
+    });
+
+    timer.on('pause', () => {
+        rounds.counter--;
     });
 
     timer.on('update', () => {

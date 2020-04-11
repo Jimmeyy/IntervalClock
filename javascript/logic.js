@@ -16,29 +16,36 @@ const logic = function () {
 
     let timerWarmup;
     let timerPrepare;
-    let timerWork;
-    let timerRest;
+    let timerWork = [];
+    let timerRest = [];
 
     // Handle start click
     function handleStartClick(event) {
         event.preventDefault();
         if (!validation()) {
             if (!isStart) {
-                // ----------------------------------------------
                 rounds.all = inputs.rounds.value;
                 clock.roundsAll.innerHTML = rounds.all;
-                timerRest = restTimer();
-                timerWork = workTimer(timerRest);
-                // ----------------------------------------------
-                timerWarmup = warmupTimer(timerWork);
+                for (let i = 0; i < rounds.all; i++) {
+                    timerRest[i] = restTimer();
+                    timerWork[i] = workTimer(timerRest[i]);
+                }
+                for (let i = 0; i < rounds.all - 1; i++) {
+                    timerRest[i].setNextTimer(timerWork[i + 1]);
+                }
+                timerWarmup = warmupTimer(timerWork[0]);
                 timerPrepare = prepareTimer(timerWarmup);
                 timerPrepare.start();
                 isStart = true;
             } else {
                 timerPrepare.isPaused && timerPrepare.start();
                 timerWarmup.isPaused && timerWarmup.start();
-                timerWork.isPaused && timerWork.start();
-                timerRest.isPaused && timerRest.start();
+                timerWork.forEach((timer) => {
+                    timer.isPaused && timer.start();
+                });
+                timerRest.forEach((timer) => {
+                    timer.isPaused && timer.start();
+                });
             }
         }
     }
@@ -49,8 +56,12 @@ const logic = function () {
         if (isStart) {
             timerPrepare.pause();
             timerWarmup.pause();
-            timerWork.pause();
-            timerRest.pause();
+            timerWork.forEach((timer) => {
+                timer.pause();
+            });
+            timerRest.forEach((timer) => {
+                timer.pause();
+            });
         }
     }
 
@@ -59,11 +70,6 @@ const logic = function () {
         event.preventDefault();
         location.reload();
     }
-
-    // temp helper
-    window.addEventListener('click', () => {
-        console.log(rounds.counter);
-    });
 
     btns.start.addEventListener('click', handleStartClick);
     btns.pause.addEventListener('click', handlePauseClick);

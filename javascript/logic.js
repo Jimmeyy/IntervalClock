@@ -39,7 +39,6 @@ const logic = function () {
                 timerRemaining = remainingTimer();
                 timerPrepare.start();
                 timerRemaining.start();
-
                 isStart = true;
             } else {
                 timerPrepare.isPaused && timerPrepare.start();
@@ -51,7 +50,9 @@ const logic = function () {
                     timer.isPaused && timer.start();
                 });
                 timerRemaining.isPaused && timerRemaining.start();
+                document.querySelector('.clock-wrapper').classList.remove('is-paused');
             }
+            btns.start.classList.add('is-disabled');
         }
     }
 
@@ -69,6 +70,8 @@ const logic = function () {
                 timer.pause();
             });
             timerRemaining.pause();
+            document.querySelector('.clock-wrapper').classList.add('is-paused');
+            btns.start.classList.remove('is-disabled');
         }
     }
 

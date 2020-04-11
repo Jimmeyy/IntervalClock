@@ -6,6 +6,7 @@ import prepareTimer from './prepareTimer';
 import warmupTimer from './warmupTimer';
 import workTimer from './workTimer';
 import restTimer from './restTimer';
+import remainingTimer from './remainingTimer';
 import { rounds } from './globals';
 
 const logic = function () {
@@ -18,6 +19,7 @@ const logic = function () {
     let timerPrepare;
     let timerWork = [];
     let timerRest = [];
+    let timerRemaining;
 
     // Handle start click
     function handleStartClick(event) {
@@ -35,7 +37,10 @@ const logic = function () {
                 }
                 timerWarmup = warmupTimer(timerWork[0]);
                 timerPrepare = prepareTimer(timerWarmup);
+                timerRemaining = remainingTimer();
                 timerPrepare.start();
+                timerRemaining.start();
+
                 isStart = true;
             } else {
                 timerPrepare.isPaused && timerPrepare.start();
@@ -46,6 +51,7 @@ const logic = function () {
                 timerRest.forEach((timer) => {
                     timer.isPaused && timer.start();
                 });
+                timerRemaining.isPaused && timerRemaining.start();
             }
         }
     }
@@ -53,6 +59,7 @@ const logic = function () {
     // Handle pasue click
     function handlePauseClick(event) {
         event.preventDefault();
+        isPause = !isPause;
         if (isStart) {
             timerPrepare.pause();
             timerWarmup.pause();
@@ -62,6 +69,7 @@ const logic = function () {
             timerRest.forEach((timer) => {
                 timer.pause();
             });
+            timerRemaining.pause();
         }
     }
 

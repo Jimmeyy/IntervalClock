@@ -11,7 +11,6 @@ import { rounds } from './globals';
 
 const logic = function () {
     const { btns, inputs, clock } = selectors();
-    fillInputs(inputs);
     let isPause = false;
     let isStart = false;
 

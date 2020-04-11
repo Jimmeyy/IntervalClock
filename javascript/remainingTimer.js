@@ -12,7 +12,6 @@ const remainingTimer = function () {
     const warmupTime = parseInt(inputs.warmup.value);
     const prepareTime = parseInt(5);
     const duration = rounds * (workTime + restTime) + warmupTime + prepareTime;
-    console.log(duration);
     const options = {
         startTime: duration * 1000,
         countdown: true,

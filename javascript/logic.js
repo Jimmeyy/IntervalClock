@@ -5,9 +5,11 @@ import validation from './validation';
 import prepareTimer from './prepareTimer';
 import warmupTimer from './warmupTimer';
 import workTimer from './workTimer';
+import restTimer from './restTimer';
+import { rounds } from './globals';
 
 const logic = function () {
-    const { btns, inputs } = selectors();
+    const { btns, inputs, clock } = selectors();
     fillInputs(inputs);
     let isPause = false;
     let isStart = false;
@@ -22,7 +24,12 @@ const logic = function () {
         event.preventDefault();
         if (!validation()) {
             if (!isStart) {
-                timerWork = workTimer();
+                // ----------------------------------------------
+                rounds.all = inputs.rounds.value;
+                clock.roundsAll.innerHTML = rounds.all;
+                timerRest = restTimer();
+                timerWork = workTimer(timerRest);
+                // ----------------------------------------------
                 timerWarmup = warmupTimer(timerWork);
                 timerPrepare = prepareTimer(timerWarmup);
                 timerPrepare.start();
@@ -31,6 +38,7 @@ const logic = function () {
                 timerPrepare.isPaused && timerPrepare.start();
                 timerWarmup.isPaused && timerWarmup.start();
                 timerWork.isPaused && timerWork.start();
+                timerRest.isPaused && timerRest.start();
             }
         }
     }
@@ -42,6 +50,7 @@ const logic = function () {
             timerPrepare.pause();
             timerWarmup.pause();
             timerWork.pause();
+            timerRest.pause();
         }
     }
 
@@ -50,6 +59,11 @@ const logic = function () {
         event.preventDefault();
         location.reload();
     }
+
+    // temp helper
+    window.addEventListener('click', () => {
+        console.log(rounds.counter);
+    });
 
     btns.start.addEventListener('click', handleStartClick);
     btns.pause.addEventListener('click', handlePauseClick);

@@ -53,9 +53,9 @@ const fillInputs = function (inputs) {
     window.addEventListener('keypress', (event) => {
         if (event.key === 'f') {
             inputs.rounds.value = 5;
-            inputs.workTime.value = 2;
-            inputs.restTime.value = 2;
-            inputs.warmup.value = 10;
+            inputs.workTime.value = 4;
+            inputs.restTime.value = 4;
+            inputs.warmup.value = 5;
         }
     });
 };

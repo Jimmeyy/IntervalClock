@@ -2,12 +2,11 @@ import selectors from './selectors';
 import { headingTexts } from './resources';
 import { Timer } from 'interval-timer';
 import { timeToDisplay, getSound } from './helpers';
-import { rounds } from './globals';
 
 const { inputs, clock } = selectors();
 
-const workTimer = function (nextTimer) {
-    const duration = inputs.workTime.value;
+const restTimer = function (nextTimer) {
+    const duration = inputs.restTime.value;
     const options = {
         startTime: duration * 1000,
         countdown: true,
@@ -17,9 +16,7 @@ const workTimer = function (nextTimer) {
     const timer = new Timer(options);
 
     timer.on('start', () => {
-        rounds.counter++;
-        clock.roundsDone.innerHTML = rounds.counter;
-        clock.heading.innerHTML = headingTexts.work;
+        clock.heading.innerHTML = headingTexts.rest;
         getSound();
     });
 
@@ -34,4 +31,4 @@ const workTimer = function (nextTimer) {
     return timer;
 };
 
-export default workTimer;
+export default restTimer;

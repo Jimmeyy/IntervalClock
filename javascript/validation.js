@@ -26,7 +26,7 @@ const validation = function () {
     });
 
     inputsArr.forEach((element) => {
-        element.errorFlag = !validator.isInt(element.input.value, { min: 1, max: 36000, allow_leading_zeroes: false });
+        element.errorFlag = !validator.isInt(element.input.value, { min: 0, max: 36000, allow_leading_zeroes: false });
     });
 
     inputsArr.forEach((element) => {

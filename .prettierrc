@@ -5,12 +5,10 @@
     "tabWidth": 4,
     "trailingComma": "es5",
     "printWidth": 400,
-    "overrides": [
-        {
-            "files": "*.js",
-            "options": {
-                "singleQuote": true
-            }
+    "overrides": [{
+        "files": "*.js",
+        "options": {
+            "singleQuote": true
         }
-    ]
+    }]
 }

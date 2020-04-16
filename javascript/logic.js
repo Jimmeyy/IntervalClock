@@ -1,5 +1,4 @@
 import selectors from './selectors';
-import { fillInputs } from './helpers';
 import validation from './validation';
 // timers
 import prepareTimer from './prepareTimer';
@@ -7,11 +6,10 @@ import warmupTimer from './warmupTimer';
 import workTimer from './workTimer';
 import restTimer from './restTimer';
 import remainingTimer from './remainingTimer';
-import { rounds } from './globals';
+import { rounds, flags } from './globals';
 
 const logic = function () {
     const { btns, inputs, clock } = selectors();
-    let isStart = false;
 
     let timerWarmup;
     let timerPrepare;
@@ -23,8 +21,9 @@ const logic = function () {
     function handleStartClick(event) {
         event.preventDefault();
         if (!validation()) {
-            if (!isStart) {
+            if (!flags.isStart) {
                 rounds.all = inputs.rounds.value;
+                rounds.counter = 0;
                 clock.roundsAll.innerHTML = rounds.all;
                 for (let i = 0; i < rounds.all; i++) {
                     timerRest[i] = restTimer();
@@ -38,7 +37,7 @@ const logic = function () {
                 timerRemaining = remainingTimer();
                 timerPrepare.start();
                 timerRemaining.start();
-                isStart = true;
+                flags.isStart = true;
             } else {
                 timerPrepare.isPaused && timerPrepare.start();
                 timerWarmup.isPaused && timerWarmup.start();
@@ -58,7 +57,7 @@ const logic = function () {
     // Handle pasue click
     function handlePauseClick(event) {
         event.preventDefault();
-        if (isStart) {
+        if (flags.isStart) {
             timerPrepare.pause();
             timerWarmup.pause();
             timerWork.forEach((timer) => {

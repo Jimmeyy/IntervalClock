@@ -2,8 +2,9 @@ import selectors from './selectors';
 import { Timer } from 'interval-timer';
 import { timeToDisplay, getSound } from './helpers';
 import { headingTexts } from './resources';
+import { flags } from './globals';
 
-const { inputs, clock } = selectors();
+const { inputs, btns, clock } = selectors();
 
 const remainingTimer = function () {
     const rounds = parseInt(inputs.rounds.value);
@@ -25,7 +26,10 @@ const remainingTimer = function () {
     });
 
     timer.on('end', () => {
+        console.log(rounds);
         clock.heading.innerHTML = headingTexts.end;
+        flags.isStart = false;
+        btns.start.classList.remove('is-disabled');
         getSound();
     });
 

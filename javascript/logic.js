@@ -11,7 +11,6 @@ import { rounds } from './globals';
 
 const logic = function () {
     const { btns, inputs, clock } = selectors();
-    let isPause = false;
     let isStart = false;
 
     let timerWarmup;
@@ -59,7 +58,6 @@ const logic = function () {
     // Handle pasue click
     function handlePauseClick(event) {
         event.preventDefault();
-        isPause = !isPause;
         if (isStart) {
             timerPrepare.pause();
             timerWarmup.pause();

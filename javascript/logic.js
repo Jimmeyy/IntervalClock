@@ -83,4 +83,4 @@ const logic = function () {
     btns.reset.addEventListener('click', handleResetClick);
 };
 
-export default logic();
+export default logic;

@@ -34,4 +34,4 @@ const mobileMenu = function () {
     }
 };
 
-export default mobileMenu();
+export default mobileMenu;

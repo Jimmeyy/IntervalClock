@@ -434,7 +434,11 @@ body {
 .content {
 
     &-wrapper {
-        padding: 40px 50px 30px 50px;
+        padding: 70px 50px 30px 20px;
+        
+        @include breakpoint-min(1201px) {
+            padding: 40px 50px 30px 50px;
+        }
 
         h2 {
             font-size: 38px;

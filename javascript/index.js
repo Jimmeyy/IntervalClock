@@ -1,5 +1,5 @@
 // Styles import
-import '../sass/main.scss';
+// import '../sass/main.scss';
 
 // JS imports
 import logic from './logic.js';

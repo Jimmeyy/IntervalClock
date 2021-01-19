@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163904022-1"></script>
@@ -12,25 +12,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description"
-        content="Free online interval clock. You can control the time of your workouts and perform them in interval sessions. The application offers modern design and is intuitive and easy to use">
+        content="Darmowy stoper interwałowy online. Kontroluj czas swoich ćwiczeń i wykonuj je w dostosowanych do twojego treningu interwałowych sesjach. Aplikacja oferuje nowoczesny design i charakteryzuje się przyjaznym i łatwym w użyciu interfejsem.">
     <meta name="keywords"
-        content="timer, stopwatch, online stopwatch, online timer, countdown timer, intervals, interval timer, interval clock, sport timer, sport clock, sport, fitness, fitness clock, fitness timer, workout timer, workoute intervals, stoper online interval timer online, workout online, interval clock, online timer">
-    <meta name="og:title" property="og:title" content="Intervalclock - free online interval timer">
+        content="timer, stoper, stoper online, online timer, interwały, trening interwałowy, stoper interwałowy, interval timer, interval clock, stoper sportowy, fitness, sport, trening, stoper treningowy, zegar fitness, workout, workout timer">
+    <meta name="og:title" property="og:title" content="Intervaltimer - darmowy stoper interwałowy online">
     <meta name="og:description" property="og:description"
-        content="Free online interval clock. You can control the time of your workouts and perform them in interval sessions. The application offers modern design and is intuitive and easy to use">
+        content="Darmowy stoper interwałowy online. Kontroluj czas swoich ćwiczeń i wykonuj je w dostosowanych do twojego treningu interwałowych sesjach. Aplikacja oferuje nowoczesny design i charakteryzuje się przyjaznym i łatwym w użyciu interfejsem.">
     <link rel="stylesheet" href="./sass/main.scss">
-    <title>Intervalclock timer</title>
+    <title>Intervaltimer timer</title>
 </head>
 
 <body class="app">
     <div class="wrapper">
         <main class="main">
-            <h1 style="position: absolute; opacity: 0; visibility: hidden;">Intervalclock timer - Create free online workout interval timer.</h1>
+            <h1 style="position: absolute; opacity: 0; visibility: hidden;">Intervaltimer - darmowy timer interwałowy.</h1>
             <!-- Mobile topbar -->
             <div class="mobile-topbar">
                 <div class="mobile-topbar-logo">
                     <a href="/">
-                        <h2>IntervalClock</h2>
+                        <h2>Intervaltimer</h2>
                     </a>
                 </div>
                 <div class="mobile-topbar-menu side-menu-open-js">
@@ -41,7 +41,7 @@
             <div class="side-menu side-menu-js is-active">
                 <div class="logo">
                     <a href="/">
-                        <h2>IntervalClock</h2>
+                        <h2>Intervaltimer</h2>
                     </a>
                 </div>
                 <div class="side-menu-close side-menu-close-js">
@@ -52,19 +52,19 @@
                         <div class="form-inputs">
                             <div class="input-wrapper">
                                 <div class="input-header">
-                                    <label for="rounds">Rounds</label>
+                                    <label for="rounds">Rundy</label>
                                     <img src="img/round-icon.svg" alt="round-icon" />
                                 </div>
                                 <div class="input-main">
                                     <input id="rounds" name="rounds" type="number" placeholder="Rounds number" />
                                 </div>
                                 <div class="input-error">
-                                    <p>The entered value is incorrect.</p>
+                                    <p>Podana wartość jest niepoprawna.</p>
                                 </div>
                             </div>
                             <div class="input-wrapper">
                                 <div class="input-header">
-                                    <label for="work-time">Work time</label>
+                                    <label for="work-time">Czas ćwiczeń w rundzie</label>
                                     <img src="img/clock-icon.svg" alt="round-icon" />
                                 </div>
                                 <div class="input-main">
@@ -72,12 +72,12 @@
                                         placeholder="Work time (seconds in each round)" />
                                 </div>
                                 <div class="input-error">
-                                    <p>The entered value is incorrect.</p>
+                                    <p>Podana wartość jest niepoprawna.</p>
                                 </div>
                             </div>
                             <div class="input-wrapper">
                                 <div class="input-header">
-                                    <label for="rest-time">Break time</label>
+                                    <label for="rest-time">Czas odpoczynku w rundzie</label>
                                     <img src="img/hourglass-icon.svg" alt="round-icon" />
                                 </div>
                                 <div class="input-main">
@@ -85,12 +85,12 @@
                                         placeholder="Break time (seconds in each round)" />
                                 </div>
                                 <div class="input-error">
-                                    <p>The entered value is incorrect.</p>
+                                    <p>Podana wartość jest niepoprawna.</p>
                                 </div>
                             </div>
                             <div class="input-wrapper">
                                 <div class="input-header">
-                                    <label for="warmup-time">Warmup time</label>
+                                    <label for="warmup-time">Czas rozgrzewki</label>
                                     <img src="img/clock-icon.svg" alt="round-icon" />
                                 </div>
                                 <div class="input-main">
@@ -98,26 +98,26 @@
                                         placeholder="Warmup time (seconds)" />
                                 </div>
                                 <div class="input-error">
-                                    <p>The entered value is incorrect.</p>
+                                    <p>Podana wartość jest niepoprawna.</p>
                                 </div>
                             </div>
                         </div>
                         <div class="form-btns">
-                            <button id="start-btn" class="btn yellow">Start timer</button>
+                            <button id="start-btn" class="btn yellow">Rozpocznij trening</button>
                             <div class="form-btns-divider">
-                                <button id="pause-btn" class="btn border-yellow">Pause</button>
+                                <button id="pause-btn" class="btn border-yellow">Pauza</button>
                                 <button id="reset-btn" class="btn border-red">Reset</button>
                             </div>
                         </div>
-                        <p class="form-info">If you have any questions or suggestions, please send an e-mail to
+                        <p class="form-info">Jeśli masz jakieś pytania lub sugestie, napisz maila na adres
                             <strong>intervalclocktimer@gmail.com</strong>
                         </p>
                         <ul class="form-links">
                             <li>
-                                <a href="./how-to-use.html">How to use</a>
+                                <a href="./how-to-use.html">Jak używać</a>
                             </li>
                             <li>
-                                <a href="./about.html">About</a>
+                                <a href="./about.html">O aplikacji</a>
                             </li>
                         </ul>
                     </form>
@@ -126,23 +126,23 @@
             <!-- clock component -->
             <div class="clock-wrapper">
                 <div class="clock-paused">
-                    <h2 class="heading">Paused</h2>
+                    <h2 class="heading">Pauza</h2>
                 </div>
                 <div class="clock-container">
                     <div class="clock-main">
                         <div class="clock-header">
-                            <h2 id="clock-header" class="heading">Time to workout!</h2>
+                            <h2 id="clock-header" class="heading">Czas na trening!</h2>
                         </div>
                         <div class="clock-content">
                             <h2 id="clock-timer" class="heading timer">00:00</h2>
                         </div>
                         <div class="clock-footer">
                             <div class="clock-footer-col">
-                                <h3 class="heading small">Round</h3>
+                                <h3 class="heading small">Runda</h3>
                                 <span><span id="clock-rounds-done">0</span>/<span id="clock-rounds-all">0</span></span>
                             </div>
                             <div class="clock-footer-col">
-                                <h3 class="heading small">Remaining</h3>
+                                <h3 class="heading small">Pozostały czas</h3>
                                 <span id="clock-time-remaining">00:00</span>
                             </div>
                         </div>

@@ -21,6 +21,6 @@
   "dependencies": {
     "@babel/runtime": "^7.11.0",
     "interval-timer": "^1.1.1",
-    "validator": "^13.0.0"
+    "validator": "^13.7.0"
   }
 }
